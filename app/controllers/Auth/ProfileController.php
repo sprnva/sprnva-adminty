@@ -16,7 +16,7 @@ class ProfileController
         $user_id = Auth::user('id');
         $user_data = App::get('database')->select("*", 'users', "id='$user_id'");
 
-        return view('/auth/profile', compact('user_data', 'pageTitle'));
+        return view('auth/profile', compact('user_data', 'pageTitle'));
     }
 
     public function update()

@@ -13,7 +13,11 @@ use App\Core\App;
         <?= ucfirst($pageTitle) . " | " . App::get('config')['app']['name']; ?>
     </title>
 
-    <link rel="stylesheet" href="<?= public_url('/assets/sprnva/css/bootstrap.min.css') ?>">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="<?= public_url('/assets/adminty/bower_components/bootstrap/css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= public_url('/assets/adminty/assets/icon/feather/css/feather.css') ?>">
+    <link rel="stylesheet" href="<?= public_url('/assets/adminty/assets/css/style.css') ?>">
+    <link rel="stylesheet" href="<?= public_url('/assets/adminty/assets/css/jquery.mCustomScrollbar.css') ?>">
 
     <style>
         body {
@@ -22,8 +26,16 @@ use App\Core\App;
     </style>
 
     <script src="<?= public_url('/assets/sprnva/js/jquery-3.6.0.min.js') ?>"></script>
-    <script src="<?= public_url('/assets/sprnva/js/popper.min.js') ?>"></script>
-    <script src="<?= public_url('/assets/sprnva/js/bootstrap.min.js') ?>"></script>
+    <script src="<?= public_url('/assets/adminty/bower_components/popper.js/js/popper.min.js') ?>"></script>
+    <script src="<?= public_url('/assets/adminty/bower_components/bootstrap/js/bootstrap.min.js') ?>"></script>
+    <script src="<?= public_url('/assets/adminty/bower_components/jquery-slimscroll/js/jquery.slimscroll.js') ?>"></script>
+    <script src="<?= public_url('/assets/adminty/bower_components/modernizr/js/modernizr.js') ?>"></script>
+    <script src="<?= public_url('/assets/adminty/assets/js/jquery.mCustomScrollbar.concat.min.js') ?>"></script>
+    <script src="<?= public_url('/assets/adminty/assets/js/SmoothScroll.js') ?>"></script>
+    <script src="<?= public_url('/assets/adminty/assets/js/pcoded.min.js') ?>"></script>
+    <script src="<?= public_url('/assets/adminty/assets/js/vartical-layout.min.js') ?>"></script>
+    <script src="<?= public_url('/assets/adminty/assets/js/script.min.js') ?>"></script>
+    <script src="<?= public_url('/assets/adminty/assets/js/pcoded.min.js') ?>"></script>
 </head>
 
 <body>

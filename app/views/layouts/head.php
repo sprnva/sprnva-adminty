@@ -14,78 +14,363 @@ use App\Core\Auth;
 		<?= ucfirst($pageTitle) . " | " . App::get('config')['app']['name'] ?>
 	</title>
 
-	<link rel="stylesheet" href="<?= public_url('/assets/sprnva/css/bootstrap.min.css') ?>">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+	<link rel="stylesheet" href="<?= public_url('/assets/adminty/bower_components/bootstrap/css/bootstrap.min.css') ?>">
+	<link rel="stylesheet" href="<?= public_url('/assets/adminty/assets/icon/feather/css/feather.css') ?>">
+	<link rel="stylesheet" href="<?= public_url('/assets/adminty/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css') ?>">
+	<link rel="stylesheet" href="<?= public_url('/assets/adminty/assets/pages/data-table/css/buttons.dataTables.min.css') ?>" type="text/css">
+	<link rel="stylesheet" href="<?= public_url('/assets/adminty/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') ?>" type="text/css">
+	<link rel="stylesheet" href="<?= public_url('/assets/adminty/assets/css/style.css') ?>">
+	<link rel="stylesheet" href="<?= public_url('/assets/adminty/assets/css/jquery.mCustomScrollbar.css') ?>">
 
 	<style>
-		body {
+		/* body {
 			background-color: #eef1f4;
 			font-weight: 350;
-		}
+		} */
 	</style>
 
 	<script src="<?= public_url('/assets/sprnva/js/jquery-3.6.0.min.js') ?>"></script>
-	<script src="<?= public_url('/assets/sprnva/js/popper.min.js') ?>"></script>
-	<script src="<?= public_url('/assets/sprnva/js/bootstrap.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/jquery-ui/js/jquery-ui.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/popper.js/js/popper.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/bootstrap/js/bootstrap.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/jquery-slimscroll/js/jquery.slimscroll.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/modernizr/js/modernizr.js') ?>"></script>
+
+	<!-- datatables -->
+	<script src="<?= public_url('/assets/adminty/bower_components/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/datatables.net-buttons/js/buttons.print.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/datatables.net-buttons/js/buttons.html5.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') ?>"></script>
+
+	<script src="<?= public_url('/assets/adminty/assets/js/jquery.mCustomScrollbar.concat.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/assets/js/SmoothScroll.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/assets/js/pcoded.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/assets/js/vartical-layout.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/assets/js/script.min.js') ?>"></script>
+	<script src="<?= public_url('/assets/adminty/assets/js/pcoded.min.js') ?>"></script>
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 1px solid #eee;">
-		<div class="container">
-			<a class="navbar-brand" href="<?= route('/') ?>">
-				<svg height="30pt" preserveAspectRatio="xMidYMid meet" viewBox="0 0 318 305" width="30pt" xmlns="http://www.w3.org/2000/svg">
-					<g transform="matrix(.1 0 0 -.1 0 305)" style="fill:#0a9e6e">
-						<path d="m1480 2939c-560-43-1059-436-1234-972-92-281-92-601 0-884 27-83 112-265 139-298l17-20-8 20c-4 11-9 63-11 115-3 76-9 105-30 147-35 74-31 163 12 225 45 63 104 90 187 86 82-4 139-39 176-108 20-38 23-56 20-112-5-86-40-141-115-178-50-24-50-25-45-65 9-74 54-136 113-158 14-4 17 5 23 55 13 124 104 341 209 498 85 128 137 191 262 319 196 202 405 358 633 474 228 117 398 167 597 176l130 6-43 32c-23 17-64 36-90 43-48 11-49 11-85-24-47-44-94-59-168-54-194 14-261 270-101 383 89 62 231 40 291-46 23-33 34-39 93-53 71-16 176-64 197-90 8-9 18-16 24-16 7 0-22 34-63 76-301 304-705 456-1130 423z" />
-						<path d="m2152 2565c-87-37-84-154 5-191 31-14 38-13 71 3 23 11 44 32 55 55 16 32 16 40 4 70-25 59-81 85-135 63z" />
-						<path d="m2690 2416c0-2 8-10 18-17 15-13 16-12 3 4s-21 21-21 13z" />
-						<path d="m2756 2317c13-30 27-76 30-103 5-36 16-59 42-88 60-68 86-137 90-250 4-83 8-104 28-134 101-148 60-420-102-678-201-320-516-599-869-770-230-111-385-149-570-142-130 6-200 29-266 87-30 26-61 42-99 51-118 27-217 93-266 175-21 36-32 45-63 50-42 7-153 56-186 82-11 9 25-29 81-84 376-372 927-502 1431-337 418 136 771 489 907 907 111 339 88 721-63 1043-34 71-137 244-146 244-2 0 7-24 21-53z" />
-						<path d="m2370 2099c-158-17-384-102-575-216-496-298-865-755-919-1140l-6-42 57 5c126 11 116 4 157 104 59 141 148 277 286 435 228 261 582 501 885 600 86 28 211 55 253 55 27 0 30 4 51 73 24 82 27 116 9 121-32 10-130 12-198 5z" />
-						<path d="m2405 1775c-91-20-229-72-335-125-303-152-606-418-779-684-52-79-116-204-109-211 8-8 180 58 293 113 244 119 438 256 639 452 142 138 238 254 315 378 28 45 51 84 51 87 0 6-1 6-75-10z" />
-						<path d="m2676 1706c-152-299-452-617-806-854-210-140-493-270-707-322-41-10-42-11-36-48 3-20 7-39 9-41 11-13 175 3 256 23 156 40 191 57 198 92 24 113 149 169 250 113 106-60 106-228 0-288-42-23-114-28-154-10-20 9-40 6-118-21-51-18-133-41-182-51-48-10-90-20-93-22-9-10 85-21 164-19 378 5 942 357 1231 768 57 81 142 222 110 183-48-59-149-77-218-38-106 60-106 228 0 288 21 11 48 21 59 21 18 0 29 14 52 65 27 61 74 213 67 220-1 1-12 5-24 9-18 5-26-4-58-68z" />
-						<path d="m2876 1585c-4-16-22-62-40-101-27-57-31-75-22-90 6-10 13-41 16-69l5-50 24 68c28 82 41 178 32 232l-7 40z" />
-						<path d="m2640 1367c-46-24-42-90 6-108 27-9 64 9 75 37 17 47-36 93-81 71z" />
-						<path d="m502 1245c-87-37-84-154 5-191 31-14 38-13 71 3 23 11 44 32 55 55 16 32 16 40 4 70-25 59-81 85-135 63z" />
-						<path d="m1730 577c-46-24-42-90 6-108 27-9 64 9 75 37 17 47-36 93-81 71z" />
-						<path d="m960 495c0-2 14-11 30-20 29-15 30-15 30 5 0 16-7 20-30 20-16 0-30-2-30-5z" />
-					</g>
-				</svg>
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="<?= route('/home') ?>">Home</a>
-					</li>
-				</ul>
-
-				<ul class="navbar-nav flex-row ml-md-auto">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<?= Auth::user('fullname') ?>
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="<?= route('/profile') ?>">Profile</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="<?= route('/logout') ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-
-							<form id="logout-form" action="<?= route('/logout') ?>" method="POST" style="display:none;">
-								<?= csrf() ?>
-							</form>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0 2px 5px 0 rgb(0 0 0 / 10%);">
-		<div class="container">
-			<div class="navbar-nav">
-				<div class="nav-item">
-					<div class="nav-link active" style="font-size: 18px;font-weight: 500;"><?= ucfirst($pageTitle); ?></div>
+	<!-- Pre-loader start -->
+	<div class="theme-loader">
+		<div class="ball-scale">
+			<div class='contain'>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
 				</div>
 			</div>
 		</div>
-	</nav>
-	<div class="container mt-5">
+	</div>
+	<!-- Pre-loader end -->
+
+	<div id="pcoded" class="pcoded">
+		<div class="pcoded-overlay-box"></div>
+		<div class="pcoded-container navbar-wrapper">
+
+			<nav class="navbar header-navbar pcoded-header">
+				<div class="navbar-wrapper">
+
+					<div class="navbar-logo">
+						<a class="mobile-menu" id="mobile-collapse" href="#!">
+							<i class="feather icon-menu"></i>
+						</a>
+						<a href="index-1.htm">
+							<h5>Sprnva Adminty</h5>
+						</a>
+						<a class="mobile-options">
+							<i class="feather icon-more-horizontal"></i>
+						</a>
+					</div>
+
+					<div class="navbar-container container-fluid">
+						<ul class="nav-left">
+							<li>
+								<a href="#!" onclick="javascript:toggleFullScreen()">
+									<i class="feather icon-maximize full-screen"></i>
+								</a>
+							</li>
+						</ul>
+						<ul class="nav-right">
+							<li class="header-notification">
+								<div class="dropdown-primary dropdown">
+									<div class="dropdown-toggle" data-toggle="dropdown">
+										<i class="feather icon-bell"></i>
+										<span class="badge bg-c-pink">5</span>
+									</div>
+									<ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+										<li>
+											<h6>Notifications</h6>
+											<label class="label label-danger">New</label>
+										</li>
+										<li>
+											<div class="media">
+												<img class="d-flex align-self-center img-radius" src="<?= public_url('/assets/adminty/assets/images/avatar-4.jpg') ?>" alt="Generic placeholder image">
+												<div class="media-body">
+													<h5 class="notification-user">John Doe</h5>
+													<p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+													<span class="notification-time">30 minutes ago</span>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="media">
+												<img class="d-flex align-self-center img-radius" src="<?= public_url('/assets/adminty/assets/images/avatar-3.jpg') ?>" alt="Generic placeholder image">
+												<div class="media-body">
+													<h5 class="notification-user">Joseph William</h5>
+													<p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+													<span class="notification-time">30 minutes ago</span>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="media">
+												<img class="d-flex align-self-center img-radius" src="<?= public_url('/assets/adminty/assets/images/avatar-4.jpg') ?>" alt="Generic placeholder image">
+												<div class="media-body">
+													<h5 class="notification-user">Sara Soudein</h5>
+													<p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
+													<span class="notification-time">30 minutes ago</span>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="header-notification">
+								<div class="dropdown-primary dropdown">
+									<div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
+										<i class="feather icon-message-square"></i>
+										<span class="badge bg-c-green">3</span>
+									</div>
+								</div>
+							</li>
+							<li class="user-profile header-notification">
+								<div class="dropdown-primary dropdown">
+									<div class="dropdown-toggle" data-toggle="dropdown">
+										<img src="<?= public_url('/assets/adminty/assets/images/avatar-4.jpg') ?>" class="img-radius" alt="User-Profile-Image">
+										<span><?= Auth::user('fullname') ?></span>
+										<i class="feather icon-chevron-down"></i>
+									</div>
+									<ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+										<li>
+											<a href="#!">
+												<i class="feather icon-settings"></i> Settings
+											</a>
+										</li>
+										<li>
+											<a href="<?= route('/profile') ?>">
+												<i class="feather icon-user"></i> Profile
+											</a>
+										</li>
+										<li>
+											<a href="<?= route('/logout') ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+												<i class="feather icon-log-out"></i> Logout
+											</a>
+
+											<form id="logout-form" action="<?= route('/logout') ?>" method="POST" style="display:none;">
+												<?= csrf() ?>
+											</form>
+										</li>
+									</ul>
+
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<!-- Sidebar chat start -->
+			<div id="sidebar" class="users p-chat-user showChat">
+				<div class="had-container">
+					<div class="card card_main p-fixed users-main">
+						<div class="user-box">
+							<div class="chat-inner-header">
+								<div class="back_chatBox">
+									<div class="right-icon-control">
+										<input type="text" class="form-control  search-text" placeholder="Search Friend" id="search-friends">
+										<div class="form-icon">
+											<i class="icofont icofont-search"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="main-friend-list">
+								<div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+									<a class="media-left" href="#!">
+										<img class="media-object img-radius img-radius" src="<?= public_url('/assets/adminty/assets/images/avatar-3.jpg') ?>" alt="Generic placeholder image ">
+										<div class="live-status bg-success"></div>
+									</a>
+									<div class="media-body">
+										<div class="f-13 chat-header">Josephin Doe</div>
+									</div>
+								</div>
+								<div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe" data-toggle="tooltip" data-placement="left" title="Lary Doe">
+									<a class="media-left" href="#!">
+										<img class="media-object img-radius" src="<?= public_url('/assets/adminty/assets/images/avatar-2.jpg') ?>" alt="Generic placeholder image">
+										<div class="live-status bg-success"></div>
+									</a>
+									<div class="media-body">
+										<div class="f-13 chat-header">Lary Doe</div>
+									</div>
+								</div>
+								<div class="media userlist-box" data-id="3" data-status="online" data-username="Alice" data-toggle="tooltip" data-placement="left" title="Alice">
+									<a class="media-left" href="#!">
+										<img class="media-object img-radius" src="<?= public_url('/assets/adminty/assets/images/avatar-4.jpg') ?>" alt="Generic placeholder image">
+										<div class="live-status bg-success"></div>
+									</a>
+									<div class="media-body">
+										<div class="f-13 chat-header">Alice</div>
+									</div>
+								</div>
+								<div class="media userlist-box" data-id="4" data-status="online" data-username="Alia" data-toggle="tooltip" data-placement="left" title="Alia">
+									<a class="media-left" href="#!">
+										<img class="media-object img-radius" src="<?= public_url('/assets/adminty/assets/images/avatar-3.jpg') ?>" alt="Generic placeholder image">
+										<div class="live-status bg-success"></div>
+									</a>
+									<div class="media-body">
+										<div class="f-13 chat-header">Alia</div>
+									</div>
+								</div>
+								<div class="media userlist-box" data-id="5" data-status="online" data-username="Suzen" data-toggle="tooltip" data-placement="left" title="Suzen">
+									<a class="media-left" href="#!">
+										<img class="media-object img-radius" src="<?= public_url('/assets/adminty/assets/images/avatar-2.jpg') ?>" alt="Generic placeholder image">
+										<div class="live-status bg-success"></div>
+									</a>
+									<div class="media-body">
+										<div class="f-13 chat-header">Suzen</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Sidebar inner chat start-->
+			<div class="showChat_inner">
+				<div class="media chat-inner-header">
+					<a class="back_chatBox">
+						<i class="feather icon-chevron-left"></i> Josephin Doe
+					</a>
+				</div>
+				<div class="media chat-messages">
+					<a class="media-left photo-table" href="#!">
+						<img class="media-object img-radius img-radius m-t-5" src="<?= public_url('/assets/adminty/assets/images/avatar-3.jpg') ?>" alt="Generic placeholder image">
+					</a>
+					<div class="media-body chat-menu-content">
+						<div class="">
+							<p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
+							<p class="chat-time">8:20 a.m.</p>
+						</div>
+					</div>
+				</div>
+				<div class="media chat-messages">
+					<div class="media-body chat-menu-reply">
+						<div class="">
+							<p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
+							<p class="chat-time">8:20 a.m.</p>
+						</div>
+					</div>
+					<div class="media-right photo-table">
+						<a href="#!">
+							<img class="media-object img-radius img-radius m-t-5" src="<?= public_url('/assets/adminty/assets/images/avatar-4.jpg') ?>" alt="Generic placeholder image">
+						</a>
+					</div>
+				</div>
+				<div class="chat-reply-box p-b-20">
+					<div class="right-icon-control">
+						<input type="text" class="form-control search-text" placeholder="Share Your Thoughts">
+						<div class="form-icon">
+							<i class="feather icon-navigation"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="pcoded-main-container">
+				<div class="pcoded-wrapper">
+					<nav class="pcoded-navbar">
+						<div class="pcoded-inner-navbar main-menu">
+							<div class="pcoded-navigatio-lavel">Navigation</div>
+							<ul class="pcoded-item pcoded-left-item">
+								<li class="">
+									<a href="<?= route('/') ?>">
+										<span class="pcoded-micon"><i class="feather icon-home"></i></span>
+										<span class="pcoded-mtext">Dashboard</span>
+									</a>
+								</li>
+								<li class="pcoded-hasmenu">
+									<a href="javascript:void(0)">
+										<span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+										<span class="pcoded-mtext">Crud Simulation</span>
+										<span class="pcoded-badge label label-warning">NEW</span>
+									</a>
+									<ul class="pcoded-submenu">
+										<li class=" pcoded-hasmenu">
+											<a href="javascript:void(0)">
+												<span class="pcoded-mtext">Begin</span>
+											</a>
+											<ul class="pcoded-submenu">
+												<li class=" ">
+													<a href="<?= route('/testCrud') ?>">
+														<span class="pcoded-mtext">Let's go</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</nav>
+
+					<div class="pcoded-content">
+						<div class="pcoded-inner-content">
+							<div class="main-body">
+								<div class="page-wrapper">
+									<!-- Page-header start -->
+									<div class="page-header">
+										<div class="row align-items-end">
+											<div class="col-lg-8">
+												<div class="page-header-title">
+													<div class="d-inline">
+														<h4><?= $pageTitle ?></h4>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Page-header end -->
+									<div class="page-body">
+										<div class="row">
