@@ -27,3 +27,8 @@ Sprnva is designed using bootstrap 4 and offers your choice of using different s
 - Csrf protection
 - brightens your horizon in future engagement for massive frameworks
 
+## Sprnva Adminty
+a flavour of a complete admin template powered by Sprnva.
+![image](https://user-images.githubusercontent.com/37282871/115728317-000b1100-a3b7-11eb-806f-a222bfb00f2e.png)
+
+
