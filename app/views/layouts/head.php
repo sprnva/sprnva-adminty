@@ -343,7 +343,7 @@ use App\Core\Auth;
 											</a>
 											<ul class="pcoded-submenu">
 												<li class=" ">
-													<a href="<?= route('/testCrud') ?>">
+													<a href="<?= route('/project') ?>">
 														<span class="pcoded-mtext">Let's go</span>
 													</a>
 												</li>
