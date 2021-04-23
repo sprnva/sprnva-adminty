@@ -36,16 +36,15 @@ class Request
 	 */
 	public static function validate($uri = '', $datas = [])
 	{
-
 		foreach ($datas as $key => $data) {
 			if ($data == "required") {
-				if (empty($_POST[$key])) {
+				if (empty($_REQUEST[$key])) {
 					$errorList[] = "&bull; {$key} is {$data} but has no value.";
 				}
 			}
 		}
 
-		foreach ($_POST as $key => $value) {
+		foreach ($_REQUEST as $key => $value) {
 			$post_data[$key] = sanitizeString($value);
 		}
 
@@ -55,8 +54,8 @@ class Request
 			redirect($uri, [implode('<br>', $errorList), "danger"]);
 		}
 
-		if (isset($_POST['_token'])) {
-			static::verifyCsrfToken($_POST['_token']);
+		if (isset($_REQUEST['_token'])) {
+			static::verifyCsrfToken($_REQUEST['_token']);
 		}
 
 		return $post_data;
