@@ -61,6 +61,7 @@ class ProjectController
 
 	public function delete($id)
 	{
+		Request::validate();
 		$user_id = Auth::user('id');
 		App::get('database')->delete('projects', "id = '$id' AND user_id = '$user_id'");
 		redirect('/project', ["Deleted successfully.", 'success']);
