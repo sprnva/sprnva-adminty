@@ -16,7 +16,7 @@ class ProjectController
 		$user_id = Auth::user('id');
 
 		$project_datas = App::get('database')->selectLoop('*', 'projects', "user_id = '$user_id'");
-		return view('projects/index', compact('project_datas', 'pageTitle'));
+		return view('/projects/index', compact('project_datas', 'pageTitle'));
 	}
 
 	public function detail($id)
@@ -30,21 +30,21 @@ class ProjectController
 			redirect('/project');
 		}
 
-		return view('projects/detail', compact('project_details', 'pageTitle'));
+		return view('/projects/detail', compact('project_details', 'pageTitle'));
 	}
 
 	public function add()
 	{
 		$pageTitle = "Project Add";
 		$projectCode = "PROJ-" . strtoupper(randChar(8));
-		return view('projects/new', compact('projectCode', 'pageTitle'));
+		return view('/projects/new', compact('projectCode', 'pageTitle'));
 	}
 
 	public function store()
 	{
 		$request = Request::validate('/project/add', [
-			'proj-code' => 'required',
-			'proj-name' => 'required'
+			'proj-code' => ['required'],
+			'proj-name' => ['required']
 		]);
 
 		$project_form = [
@@ -70,8 +70,8 @@ class ProjectController
 	public function updateDetail($id)
 	{
 		$request = Request::validate('/project/detail/' . $id, [
-			'edit-proj-code' => 'required',
-			'edit-proj-name' => 'required'
+			'edit-proj-code' => ['required'],
+			'edit-proj-name' => ['required']
 		]);
 
 		$update_project_form = [

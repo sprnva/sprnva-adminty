@@ -15,15 +15,15 @@ class RegisterController
         Auth::isAuthenticated();
 
         $pageTitle = "Register";
-        return view('auth/register', compact('pageTitle'));
+        return view('/auth/register', compact('pageTitle'));
     }
 
     public function store()
     {
         $request = Request::validate('/register', [
-            'email' => 'required',
-            'username' => 'required',
-            'password' => 'required',
+            'email' => ['required', 'email'],
+            'username' => ['required'],
+            'password' => ['required'],
         ]);
 
         $register_user = [

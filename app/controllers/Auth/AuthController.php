@@ -15,14 +15,14 @@ class AuthController
         Auth::isAuthenticated();
 
         $pageTitle = "Login";
-        return view('auth/login', compact('pageTitle'));
+        return view('/auth/login', compact('pageTitle'));
     }
 
     public function authenticate()
     {
         $request = Request::validate('/login', [
-            'username' => 'required',
-            'password' => 'required'
+            'username' => ['required'],
+            'password' => ['required']
         ]);
 
         Auth::authenticate($request);
@@ -39,13 +39,13 @@ class AuthController
         Auth::isAuthenticated();
 
         $pageTitle = "Forgot Password";
-        return view('auth/forgot-password', compact('pageTitle'));
+        return view('/auth/forgot-password', compact('pageTitle'));
     }
 
     public function sendResetLink()
     {
         $request = Request::validate('/forgot/password', [
-            'email' => 'required',
+            'email' => ['required'],
         ]);
 
         Request::passwordResetLink($request);
@@ -54,14 +54,14 @@ class AuthController
     public function resetPassword($token)
     {
         $pageTitle = "Reset Password";
-        return view('auth/password-reset', compact('pageTitle', 'token'));
+        return view('/auth/password-reset', compact('pageTitle', 'token'));
     }
 
     public function passwordStore()
     {
         $request = Request::validate('/reset/password/' . $_POST['token'], [
-            'new_password' => 'required',
-            'confirm_password' => 'required'
+            'new_password' => ['required'],
+            'confirm_password' => ['required']
         ]);
 
         Auth::resetPasswordWithToken($request);

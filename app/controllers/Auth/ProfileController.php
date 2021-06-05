@@ -16,13 +16,13 @@ class ProfileController
         $user_id = Auth::user('id');
         $user_data = App::get('database')->select("*", 'users', "id='$user_id'");
 
-        return view('auth/profile', compact('user_data', 'pageTitle'));
+        return view('/auth/profile', compact('user_data', 'pageTitle'));
     }
 
     public function update()
     {
         $request = Request::validate('/profile', [
-            'email' => 'required'
+            'email' => ['required', 'email']
         ]);
 
         $user_id = Auth::user('id');
@@ -39,9 +39,9 @@ class ProfileController
     public function changePass()
     {
         $request = Request::validate('/profile', [
-            'old-password' => 'required',
-            'new-password' => 'required',
-            'confirm-password' => 'required'
+            'old-password' => ['required'],
+            'new-password' => ['required'],
+            'confirm-password' => ['required']
         ]);
 
         $response_message = Auth::resetPassword($request);
