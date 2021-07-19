@@ -105,8 +105,8 @@ use App\Core\Auth;
 						<a class="mobile-menu" id="mobile-collapse" href="#!">
 							<i class="feather icon-menu"></i>
 						</a>
-						<a href="index-1.htm">
-							<h5>Sprnva Adminty</h5>
+						<a href="<?= route('/') ?>">
+							<h5><?= App::get('config')['app']['name'] ?></h5>
 						</a>
 						<a class="mobile-options">
 							<i class="feather icon-more-horizontal"></i>

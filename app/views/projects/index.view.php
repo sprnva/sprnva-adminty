@@ -11,7 +11,7 @@ require __DIR__ . '/../layouts/head.php'; ?>
 	</a>
 </div>
 
-<div class="col">
+<div class="col-12">
 	<?= alert_msg(); ?>
 	<div class="card p-4">
 		<!-- Light table -->
@@ -48,7 +48,6 @@ require __DIR__ . '/../layouts/head.php'; ?>
 		</div>
 	</div>
 </div>
-
 
 <script>
 	$(document).ready(function() {
