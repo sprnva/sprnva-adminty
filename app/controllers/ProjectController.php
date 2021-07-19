@@ -15,29 +15,29 @@ class ProjectController
 		$pageTitle = "Projects";
 		$user_id = Auth::user('id');
 
-		$project_datas = App::get('database')->selectLoop('*', 'projects', "user_id = '$user_id'");
+		$project_datas = DB()->selectLoop('*', 'projects', "user_id = '$user_id'")->get();
 		return view('/projects/index', compact('project_datas', 'pageTitle'));
 	}
 
-	public function detail($id)
+	public function edit($id)
 	{
 		$pageTitle = "Project Detail";
 		$user_id = Auth::user('id');
 
-		$project_details = App::get('database')->select("*", 'projects', "id='$id' AND user_id = '$user_id'");
+		$project_details = DB()->select("*", 'projects', "id='$id' AND user_id = '$user_id'")->get();
 
 		if (!$project_details) {
 			redirect('/project');
 		}
 
-		return view('/projects/detail', compact('project_details', 'pageTitle'));
+		return view('/projects/edit', compact('project_details', 'pageTitle'));
 	}
 
-	public function add()
+	public function create()
 	{
 		$pageTitle = "Project Add";
 		$projectCode = "PROJ-" . strtoupper(randChar(8));
-		return view('/projects/new', compact('projectCode', 'pageTitle'));
+		return view('/projects/create', compact('projectCode', 'pageTitle'));
 	}
 
 	public function store()
@@ -55,19 +55,19 @@ class ProjectController
 			'user_id' => Auth::user('id')
 		];
 
-		App::get('database')->insert("projects", $project_form);
-		redirect('/project/add', ["Added successfully.", 'success']);
+		DB()->insert("projects", $project_form);
+		redirect('/project/create', ["message" => "Added successfully.", "status" => 'success']);
 	}
 
-	public function delete($id)
+	public function destroy($id)
 	{
 		Request::validate();
 		$user_id = Auth::user('id');
-		App::get('database')->delete('projects', "id = '$id' AND user_id = '$user_id'");
-		redirect('/project', ["Deleted successfully.", 'success']);
+		DB()->delete('projects', "id = '$id' AND user_id = '$user_id'");
+		redirect('/project', ["message" => "Deleted successfully.", "status" => 'success']);
 	}
 
-	public function updateDetail($id)
+	public function update($id)
 	{
 		$request = Request::validate('/project/detail/' . $id, [
 			'edit-proj-code' => ['required'],
@@ -80,7 +80,7 @@ class ProjectController
 			'description' => $request['edit-proj-description']
 		];
 
-		App::get('database')->update("projects", $update_project_form, "id = '$id'");
-		redirect('/project/detail/' . $id, ["Updated successfully.", 'success']);
+		DB()->update("projects", $update_project_form, "id = '$id'");
+		redirect("/project/{$id}/edit", ["message" => "Updated successfully.", "status" => 'success']);
 	}
 }

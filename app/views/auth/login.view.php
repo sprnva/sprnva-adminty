@@ -88,10 +88,10 @@ use App\Core\App;
                             <?= csrf() ?>
                             <div class="auth-box card">
                                 <div class="card-block">
-                                    <?= msg('RESPONSE_MSG'); ?>
+                                    <?= alert_msg(); ?>
                                     <div class="form-group form-primary mt-3">
                                         <label for="username">Username</label>
-                                        <input type="text" class="form-control" name="username" autocomplete="off" autofocus>
+                                        <input type="text" class="form-control" name="username" autocomplete="off" autofocus value="<?= old('username') ?>">
                                     </div>
                                     <div class="form-group form-primary">
                                         <label for="password">Password</label>

@@ -22,11 +22,11 @@ class Auth
      */
     public static function authenticate($request)
     {
-        $datas = DB()->select("*", "users", "username = '$request[username]'");
+        $datas = DB()->select("*", "users", "username = '$request[username]'")->get();
         $passchecker = checkHash($request['password'], $datas['password']);
 
         if ($passchecker == "") {
-            redirect('/login', ["User not found.", 'danger']);
+            redirect('/login', ["message" => "User not found.", "status" => 'danger']);
         }
 
         $users = [];
@@ -37,6 +37,7 @@ class Auth
         }
 
         $_SESSION["AUTH"] = $users;
+        Request::invalidateOld();
         Request::renewCsrfToken();
 
         redirect('/home');
@@ -74,12 +75,12 @@ class Auth
     public static function logout($request = '')
     {
         if (!empty($request)) {
-            Request::verifyCsrfToken($request['_token']);
+            Request::verifyCsrfToken($request['csrf_token']);
             static::sessionInvalidate();
-            redirect('/login');
+            redirect('/');
         } else {
             static::sessionInvalidate();
-            redirect('/login');
+            redirect('/');
         }
     }
 
@@ -91,7 +92,7 @@ class Auth
     public static function resetPassword($request)
     {
         $user_id = Auth::user('id');
-        $userCurrent = DB()->select('password', 'users', "id = '$user_id'");
+        $userCurrent = DB()->select('password', 'users', "id = '$user_id'")->get();
         $passwordCheck = checkHash($request["old-password"], $userCurrent['password']);
 
         if ($passwordCheck) {
@@ -101,12 +102,12 @@ class Auth
                     'updated_at' => date("Y-m-d H:i:s")
                 ];
                 DB()->update('users', $update_pass, "id = '$user_id'");
-                $response_message = ["Password has changed.", "success"];
+                $response_message = ["message" => "Password has changed.", "status" => "success"];
             } else {
-                $response_message = ["Passwords must match.", "danger"];
+                $response_message = ["message" => "Passwords must match.", "status" => "danger"];
             }
         } else {
-            $response_message = ["Old password did not match.", "danger"];
+            $response_message = ["message" => "Old password did not match.", "status" => "danger"];
         }
 
         return $response_message;
@@ -119,7 +120,7 @@ class Auth
      */
     public static function resetPasswordWithToken($request)
     {
-        $isTokenLegit = DB()->select("email", "password_resets", "token = '$request[token]'");
+        $isTokenLegit = DB()->select("email", "password_resets", "token = '$request[token]'")->get();
 
         if ($isTokenLegit) {
 
@@ -134,12 +135,12 @@ class Auth
 
                 DB()->delete("password_resets", "email = '$isTokenLegit[email]' AND token = '$request[token]'");
 
-                redirect('/login', ["Success reset password", "success"]);
+                redirect('/login', ["message" => "Success reset password", "status" => "success"]);
             } else {
-                redirect('/reset/password/' . $request['token'], ["Passwords must match.", "danger"]);
+                redirect('/reset/password/' . $request['token'], ["message" => "Passwords must match.", "status" => "danger"]);
             }
         } else {
-            redirect('/reset/password/' . $request['token'], ["Token is not authorized.", "danger"]);
+            redirect('/reset/password/' . $request['token'], ["message" => "Token is not authorized.", "status" => "danger"]);
         }
     }
 

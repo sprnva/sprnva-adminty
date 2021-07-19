@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Core\App;
 use App\Core\Auth;
 use App\Core\Request;
 
@@ -14,7 +13,7 @@ class ProfileController
     {
         $pageTitle = "Profile";
         $user_id = Auth::user('id');
-        $user_data = App::get('database')->select("*", 'users', "id='$user_id'");
+        $user_data = DB()->select("*", 'users', "id='$user_id'")->get();
 
         return view('/auth/profile', compact('user_data', 'pageTitle'));
     }
@@ -32,8 +31,8 @@ class ProfileController
             'fullname' => "$request[name]"
         ];
 
-        App::get('database')->update('users', $update_data, "id = '$user_id'");
-        redirect("/profile", ["Profile information updated.", 'success']);
+        DB()->update('users', $update_data, "id = '$user_id'");
+        redirect("/profile", ["message" => "Profile information updated.", "status" => 'success']);
     }
 
     public function changePass()
@@ -48,11 +47,10 @@ class ProfileController
         redirect("/profile", $response_message);
     }
 
-    public function delete()
+    public function destroy($user_id)
     {
         Request::validate();
-        $user_id = Auth::user('id');
-        App::get('database')->delete('users', "id = '$user_id'");
+        DB()->delete('users', "id = '$user_id'");
 
         Auth::logout();
     }

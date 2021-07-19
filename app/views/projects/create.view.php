@@ -12,9 +12,9 @@ require __DIR__ . '/../layouts/head.php'; ?>
 <div class="col-8 mt-2">
 	<div class="card p-4" style="background-color: #fff; border: 0px; border-radius: 8px; box-shadow: 0 4px 5px 0 rgba(0,0,0,0.2);">
 		<div class="card-body">
-			<?= msg('RESPONSE_MSG'); ?>
+			<?= alert_msg(); ?>
 
-			<form method="POST" action="<?= route('/project/add') ?>">
+			<form method="POST" action="<?= route('/project') ?>">
 				<?= csrf() ?>
 				<div class="form-group">
 					<label for="username">Project Code</label>

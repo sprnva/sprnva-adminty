@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Core\App;
 use App\Core\Auth;
 use App\Core\Request;
 
@@ -35,7 +34,7 @@ class RegisterController
             'created_at' => date("Y-m-d H:i:s")
         ];
 
-        App::get('database')->insert("users", $register_user);
-        redirect('/register', ["Success register", "success"]);
+        DB()->insert("users", $register_user);
+        redirect('/register', ["message" => "Success register", "status" => "success"]);
     }
 }
